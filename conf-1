@@ -1,0 +1,27 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    lan0:
+      match:
+        macaddress: 68:05:ca:1f:2d:6c
+      optional: true
+      set-name: eth0
+	  addresses: [192.168.1.110/24]
+	  gateway4: 192.168.1.1
+	  nameservers:
+        addresses: [127.0.0.1]
+    lan1:
+      match:
+        macaddress: 00:1e:67:b8:65:1c
+      optional: true
+      set-name: eth1
+	lan2:
+      match:
+        macaddress: 00:1e:67:b8:65:1d
+      optional: true
+      set-name: eth2	  
+  bridges:
+    br0:
+      dhcp4: yes
+	  interfaces: [lan1, lan2]
